@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React, { useState } from "react";
+import "./App.css";
+import UserInput from "./Components/UserInput";
+import Data from "./Components/Data";
+export default function App() {
+  const [pass, setPass] = useState([]);
+  function add({ updata }) {
+    if(updata.trim() === ""){
+      alert("Please enter your wish before updating the list");
+      return;
+    }
+    setPass([...pass, updata]);
+  }
+  function clearAll(clear) {
+    if (clear) {
+      setPass([]);
+    }
+  }
+  function DeleteItem(index) {
+    let temp = [...pass];
+    temp.splice(index, 1);
+    setPass(temp);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div id="parent">
+        <h1 id="h1">Wish List Manager</h1>
+        <UserInput addtothelist={add} clearAll={clearAll} />
+        <Data sendData={pass} DeleteItem={DeleteItem} />
+      </div>
+    </>
   );
 }
-
-export default App;

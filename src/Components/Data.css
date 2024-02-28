@@ -1,0 +1,10 @@
+div.delete {
+    position: relative;
+    left: 90px;
+    bottom: 38px;
+  }
+  li {
+    margin-left: -60px;
+    font-family: Bakbak One;
+    font-size: larger;
+  }
